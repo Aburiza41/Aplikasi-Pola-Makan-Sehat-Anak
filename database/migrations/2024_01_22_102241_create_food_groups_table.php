@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             // Slug
             $table->string('slug')->unique();
+            // Code Name
+            $table->string('code_name')->unique();
             // description
             $table->longText('description')->nullable()->default(null);
             $table->timestamps();
