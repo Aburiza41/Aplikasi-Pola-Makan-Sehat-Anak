@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// For Guest an Not Authentication
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// For Guest on Authentication
+require __DIR__ . '/auth.php';
 
+// For User an Authentication
 Route::middleware(['auth'])->group(function () {
     // Dashboard
     Route::get('/dashboard', function () {
@@ -92,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
 
             // Customized
             Route::post('/store/image', 'image')->name('.image');
+            Route::post('/store/search', 'search')->name('.search');
         });
 
         // Food
@@ -131,5 +136,3 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-require __DIR__ . '/auth.php';

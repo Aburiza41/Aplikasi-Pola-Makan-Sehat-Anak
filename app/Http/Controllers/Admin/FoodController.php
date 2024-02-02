@@ -19,8 +19,11 @@ class FoodController extends Controller
         // Set Alert
         // Alert::success('Success Title', 'Success Message');
 
+        // Get All Foods
+        $foods = \App\Models\Food::paginate(1);
+
         // Return a view
-        return view('pages.admin.food.index');
+        return view('pages.admin.food.index', compact('foods'));
     }
 
     /**
