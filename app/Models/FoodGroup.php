@@ -13,6 +13,7 @@ class FoodGroup extends Model
     protected $fillable = [
         'name',
         'slug',
+        'code_name', // Add this line
         'description',
     ];
 

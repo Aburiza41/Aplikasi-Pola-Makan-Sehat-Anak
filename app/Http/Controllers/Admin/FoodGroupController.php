@@ -18,7 +18,7 @@ class FoodGroupController extends Controller
         // dd('Hello World!');
 
         // Get All Food Groups
-        $food_groups = \App\Models\FoodGroup::paginate(5);
+        $food_groups = \App\Models\FoodGroup::paginate(10);
 
         // Return a view
         return view('pages.admin.food_group.index', compact('food_groups'));

@@ -19,12 +19,8 @@ return new class extends Migration
             // Food ID
             $table->unsignedBigInteger('food_id');
             $table->foreign('food_id')->references('id')->on('food');
-            // Date
-            $table->date('date');
-            // Time
+            // Time 
             $table->time('time');
-            // Quantity
-            $table->integer('quantity');
             // Notes
             $table->longText('notes')->nullable()->default(null);
             $table->timestamps();

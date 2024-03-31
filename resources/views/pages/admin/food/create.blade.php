@@ -73,8 +73,22 @@
                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                          
-                         <form class="w-full mx-auto p-4" action="{{ route('admin.food_group.store') }}" method="POST">
+                         <form class="w-full mx-auto p-4" action="{{ route('admin.food.store') }}" method="POST" enctype="multipart/form-data">
                               @csrf
+                              @method('POST')
+
+                              {{-- Food Groups --}}
+                              <div class="py-2">
+                                   <x-input-label for="food_group_id" :value="__('Kelompok Makanan')" />
+                                   <select name="food_group_id" id="food_group_id" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                        <option value="">Pilih Kelompok Makanan</option>
+                                        @foreach ($food_groups as $food_group)
+                                             <option value="{{ $food_group->id }}">{{ $food_group->name }}</option>
+                                        @endforeach
+                                   </select>
+                                   <x-input-error :messages="$errors->get('food_group_id')" class="mt-2" />
+                              </div>
+
                               <div class="py-2">
                                    <x-input-label for="name" :value="__('Nama Makanan')" />
                                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Tulis Nama Kelompok Makanan" />
@@ -90,27 +104,27 @@
                               {{-- Blok 4 --}}
                               <div class="grid grid-cols-4 gap-2">
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('ENERGY')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="energy" :value="__('ENERGY')" />
+                                        <x-text-input id="energy" class="block mt-1 w-full" type="number" name="energy" :value="old('energy')" required autofocus autocomplete="energy" placeholder="Tingkat Energy" />
+                                        <x-input-error :messages="$errors->get('energy')" class="mt-2" />
                                    </div>
                                    
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('PROTEIN')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="protein" :value="__('PROTEIN')" />
+                                        <x-text-input id="protein" class="block mt-1 w-full" type="number" name="protein" :value="old('protein')" required autofocus autocomplete="protein" placeholder="Tingkat Protein" />
+                                        <x-input-error :messages="$errors->get('protein')" class="mt-2" />
                                    </div>
 
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('FATS')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="fats" :value="__('FATS')" />
+                                        <x-text-input id="fats" class="block mt-1 w-full" type="number" name="fats" :value="old('fats')" required autofocus autocomplete="fats" placeholder="Tingkat Fats" />
+                                        <x-input-error :messages="$errors->get('fats')" class="mt-2" />
                                    </div>
 
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('CARBHDRT')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="carbhdrt" :value="__('CARBHDRT')" />
+                                        <x-text-input id="carbhdrt" class="block mt-1 w-full" type="number" name="carbhdrt" :value="old('carbhdrt')" required autofocus autocomplete="carbhdrt" placeholder="Tingkat Carbhdrt" />
+                                        <x-input-error :messages="$errors->get('carbhdrt')" class="mt-2" />
                                    </div>
                               </div>
 
@@ -148,21 +162,21 @@
                                    </div>
                                    
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('VITC')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="vitc" :value="__('VITC')" />
+                                        <x-text-input id="vitc" class="block mt-1 w-full" type="number" name="vitc" :value="old('vitc')" required autofocus autocomplete="vitc" placeholder="Tingkat Vitc" />
+                                        <x-input-error :messages="$errors->get('vitc')" class="mt-2" />
                                    </div>
 
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('F-EDIBLE (BDD)')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="f_edibleBDD" :value="__('F-EDIBLE (BDD)')" />
+                                        <x-text-input id="f_edibleBDD" class="block mt-1 w-full" type="number" name="f_edibleBDD" :value="old('f_edibleBDD')" required autofocus autocomplete="f_edibleBDD" placeholder="Tingkat F-EDIBLE (BDD)" />
+                                        <x-input-error :messages="$errors->get('f_edibleBDD')" class="mt-2" />
                                    </div>
 
                                    <div class="py-2">
-                                        <x-input-label for="image" :value="__('F-WEIGHT')" />
-                                        <x-text-input id="image" class="block mt-1 w-full" type="number" name="image" :value="old('image')" required autofocus autocomplete="image" placeholder="Tulis Nama Kelompok Makanan" />
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                        <x-input-label for="f_weight" :value="__('F-WEIGHT')" />
+                                        <x-text-input id="f_weight" class="block mt-1 w-full" type="number" name="f_weight" :value="old('f_weight')" required autofocus autocomplete="f_weight" placeholder="Tingkat F-WEIGHT" />
+                                        <x-input-error :messages="$errors->get('f_weight')" class="mt-2" />
                                    </div>
                               </div>
 

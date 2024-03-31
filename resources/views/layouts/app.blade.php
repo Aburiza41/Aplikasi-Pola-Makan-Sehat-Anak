@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) || '' }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +11,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
+        <!-- Start Scripts -->
+        <!-- Vite App CSS | JS -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Alternative Flowbite -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
         <!-- Head Push Blade -->
         {{ $head ?? '' }}
@@ -20,10 +23,26 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             {{-- Check Role --}}
-            @if (Auth::user()->is_admin == 1)
-                @include('layouts.navigation.admin')
-            @elseif(Auth::user()->is_admin == 0)
-                @include('layouts.navigation.user')
+            @if(Auth::check())
+                @if (Auth::user()->is_admin == 1)
+                {{-- Check Route --}}
+                
+                    @if (request()->routeIs('dashboard') || request()->routeIs('dashboard.*') || request()->routeIs('admin') || request()->routeIs('admin.*'))
+                        @include('layouts.navigation.admin')
+                    @else
+                        @include('layouts.navigation.guest')
+                    @endif
+                @elseif(Auth::user()->is_admin == 0)
+                    {{-- Check Route --}}
+                    @if (request()->routeIs('dashboard') || request()->routeIs('dashboard.*') || request()->routeIs('user') || request()->routeIs('user.*'))
+                        @include('layouts.navigation.user')
+                    @else
+                        @include('layouts.navigation.guest')
+                    @endif
+                @endif
+                
+            @else
+                @include('layouts.navigation.guest')
             @endif
             
             <!-- Page Heading -->

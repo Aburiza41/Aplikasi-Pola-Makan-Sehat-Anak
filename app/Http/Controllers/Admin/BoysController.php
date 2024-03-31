@@ -12,10 +12,24 @@ class BoysController extends Controller
      */
     public function index()
     {
-        //
+        // Debugging
+        // dd('xxxxxxxxxxxxxx@xxxxx');
+
+        // Get All Standard on Database where jenis_kelamin = 'L' (Laki-laki) and tipe_standar = BB (Berat Badan)
+        // $bb_standards = \App\Models\Standar::where('jenis_kelamin', 'L')->where('tipe_standar', 'BB')->paginate(10);
+
+        // // Get All Standard on Database where jenis_kelamin = 'L' (Laki-laki) and tipe_standar = PB (Panjang Badan)\
+        // $pb_standards = \App\Models\Standar::where('jenis_kelamin', 'L')->where('tipe_standar', 'PB')->paginate(10);
+
+
+        // Get All Children on Gender is man (Laki-laki)
+        $childrens = \App\Models\Children::paginate(5);
+
+        // Debugging
+        // dd($bb_standards, $pb_standards);
 
         // Return a view
-        return view('pages.admin.boys.index');
+        return view('pages.admin.boys.index', compact('childrens'));
     }
 
     /**

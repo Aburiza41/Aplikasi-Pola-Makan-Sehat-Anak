@@ -18,26 +18,28 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             // Name
             $table->string('name');
-            // Gander Enum from Man, woman
-            $table->enum('gander', ['man', 'woman']);
-            // Birthdate
-            $table->date('birthdate');
+            // Slug
+            $table->string('slug')->unique();
             // Avatar
             $table->longText('avatar')->nullable()->default(null);
+            // Gander Enum from Man, woman
+            $table->enum('gander', ['boy', 'girl']);
+            // Birthdate
+            $table->date('birthdate');
             // Place of birth
-            $table->string('place_of_birth')->nullable()->default(null);
+            $table->string('place')->nullable()->default(null);
             // Blood type
-            $table->enum('blood_type', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
+            $table->enum('blood_type', ['A', 'B', 'AB', 'O']);
+            // Body Length
+            $table->integer('height')->nullable()->default(null);
+            // Body Weight
+            $table->integer('weight')->nullable()->default(null);
+            // Notes
+            $table->longText('notes')->nullable()->default(null);
             // Allergies
             $table->longText('allergies')->nullable()->default(null);
             // Chronic diseases
             $table->longText('chronic_diseases')->nullable()->default(null);
-            // Body Length
-            $table->integer('body_length')->nullable()->default(null);
-            // Body Weight
-            $table->integer('body_weight')->nullable()->default(null);
-            // Notes
-            $table->longText('notes')->nullable()->default(null);
             $table->timestamps();
         });
     }

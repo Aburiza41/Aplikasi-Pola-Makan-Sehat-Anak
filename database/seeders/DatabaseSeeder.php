@@ -12,13 +12,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        //     'is_admin' => true,
-        // ]);
+        // For Admin
+        \App\Models\User::factory()->create(
+            [
+                'name' => 'Saya Admin',
+                'email' => 'admin@example.com',
+                'is_admin' => true,
+            ],
+        );
 
-        // Generate 10 users
+        // For User
+        \App\Models\User::factory()->create(
+            [
+                'name' => 'Saya User',
+                'email' => 'user@example.com',
+                'is_admin' => false,
+            ],
+        );
+
+        // Generate 10 users fake
         \App\Models\User::factory(10)->create();
+
+        // Generate Food from load data json
+        $this->call(FoodSeeder::class);
     }
 }
