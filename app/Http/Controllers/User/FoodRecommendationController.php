@@ -28,229 +28,236 @@ class FoodRecommendationController extends Controller
         // Return View
         return view('pages.user.food-recommendation.index', compact('children', 'foodRecommendations'));
 
-        // 0-6 Months
-        // Get Foods Data from Database in energy < 550, protein < 12, fat < 34, carbohydrate < 58
-        $foods = \App\Models\Food::where('energy', '<', 550)->where('protein', '<', 12)->where('fat', '<', 34)->where('carbohydrates', '<', 58)->get();
+        // Old Code
+        // // 0-6 Months
+        // // Get Foods Data from Database in energy < 550, protein < 12, fat < 34, carbohydrate < 58
+        // // $foods = \App\Models\Food::where('energy', '<', 550)->where('protein', '<', 12)->where('fat', '<', 34)->where('carbohydrates', '<', 58)->get();
 
-        switch ($age) {
-                // 0-6 Months
-            case ($age <= 6):
-                // Get Foods Data from Database in energy < 550, protein < 12, fat < 34, carbohydrate < 58
-                $foods = \App\Models\Food::where('energy', '<', 550)->where('protein', '<', 12)->where('fat', '<', 34)->where('carbohydrates', '<', 58)->get();
-                break;
-                // 7-12 Months
+        // // switch ($age) {
+        // //         // 0-6 Months
+        // //     case ($age <= 6):
+        // //         // Get Foods Data from Database in energy < 550, protein < 12, fat < 34, carbohydrate < 58
+        // //         $foods = \App\Models\Food::where('energy', '<', 550)->where('protein', '<', 12)->where('fat', '<', 34)->where('carbohydrates', '<', 58)->get();
+        // //         break;
+        // //         // 7-12 Months
+        // //     case ($age <= 12):
+        // //         // Get Foods Data from Database in energy < 725, protein < 18, fat < 36, carbohydrate < 82
+        // //         $foods = \App\Models\Food::where('energy', '<', 725)->where('protein', '<', 18)->where('fat', '<', 36)->where('carbohydrates', '<', 82)->get();
+        // //         break;
+        // //         // 1-3 Years
+        // //     case ($age <= 36):
+        // //         // Get Foods Data from Database in energy < 1125, protein < 26, fat < 44, carbohydrate < 155
+        // //         $foods = \App\Models\Food::where('energy', '<', 1125)->where('protein', '<', 26)->where('fat', '<', 44)->where('carbohydrates', '<', 155)->get();
+        // //         break;
+        // // }
 
-        }
+        // // 7-12 Months
+        // // Get Foods Data from Database in energy < 725, protein < 18, fat < 36, carbohydrate < 82
+        // // $foods = \App\Models\Food::where('energy', '<', 725)->where('protein', '<', 18)->where('fat', '<', 36)->where('carbohydrates', '<', 82)->get();
 
-        // 7-12 Months
-        // Get Foods Data from Database in energy < 725, protein < 18, fat < 36, carbohydrate < 82
-        // $foods = \App\Models\Food::where('energy', '<', 725)->where('protein', '<', 18)->where('fat', '<', 36)->where('carbohydrates', '<', 82)->get();
+        // // 1-3 Years
+        // // Get Foods Data from Database in energy < 1125, protein < 26, fat < 44, carbohydrate < 155
+        // // $foods = \App\Models\Food::where('energy', '<', 1125)->where('protein', '<', 26)->where('fat', '<', 44)->where('carbohydrates', '<', 155)->get();
 
-        // 1-3 Years
-        // Get Foods Data from Database in energy < 1125, protein < 26, fat < 44, carbohydrate < 155
-        // $foods = \App\Models\Food::where('energy', '<', 1125)->where('protein', '<', 26)->where('fat', '<', 44)->where('carbohydrates', '<', 155)->get();
+        // // 4-6 Years
+        // // Get Foods Data from Database in energy < 1600, protein < 35, fat < 62, carbohydrate < 220
+        // // $foods = \App\Models\Food::where('energy', '<', 1600)->where('protein', '<', 35)->where('fat', '<', 62)->where('carbohydrates', '<', 220)->get();
 
-        // 4-6 Years
-        // Get Foods Data from Database in energy < 1600, protein < 35, fat < 62, carbohydrate < 220
-        // $foods = \App\Models\Food::where('energy', '<', 1600)->where('protein', '<', 35)->where('fat', '<', 62)->where('carbohydrates', '<', 220)->get();
-
-        // 7-9 Years
-        // Get Foods Data from Database in energy < 1850, protein < 49, fat < 72, carbohydrate < 254
-        // $foods = \App\Models\Food::where('energy', '<', 1850)->where('protein', '<', 49)->where('fat', '<', 72)->where('carbohydrates', '<', 254)->get();
+        // // 7-9 Years
+        // // Get Foods Data from Database in energy < 1850, protein < 49, fat < 72, carbohydrate < 254
+        // // $foods = \App\Models\Food::where('energy', '<', 1850)->where('protein', '<', 49)->where('fat', '<', 72)->where('carbohydrates', '<', 254)->get();
 
 
-        // dd($foods);
+        // // Set Initial Data 
+        // // 1. Population
+        // // Select Population
+        // $filter = null;
+        // switch ($filter) {
+        //     case (isset($filter) || $filter != null || $filter != 'all' || $filter != ''):
+        //         // Select FoodGroup = AA
+        //         $foodGroup = \App\Models\FoodGroup::where('code_name', $filter)->first();
 
-        // Set Initial Data 
-        // 1. Population
-        // Select Population
-        $filter = null;
-        switch ($filter) {
-            case (isset($filter) || $filter != null || $filter != 'all' || $filter != ''):
-                // Select FoodGroup = AA
-                $foodGroup = \App\Models\FoodGroup::where('code_name', $filter)->first();
+        //         // Select Population
+        //         $population = \App\Models\Food::where('food_group_id', $foodGroup->id)->get();
+        //         break;
 
-                // Select Population
-                $population = \App\Models\Food::where('food_group_id', $foodGroup->id)->get();
-                break;
+        //     default:
+        //         // 0-6 Months
+        //         // Get Foods Data from Database in energy < 550, protein < 12, fat < 34, carbohydrate < 58
+        //         // $population = \App\Models\Food::where('energy', '<', 550)->where('protein', '<', 12)->where('fat', '<', 34)->where('carbohydrates', '<', 58)->get();
 
-            default:
-                // 0-6 Months
-                // Get Foods Data from Database in energy < 550, protein < 12, fat < 34, carbohydrate < 58
-                // $population = \App\Models\Food::where('energy', '<', 550)->where('protein', '<', 12)->where('fat', '<', 34)->where('carbohydrates', '<', 58)->get();
+        //         // 7-12 Months
+        //         // Get Foods Data from Database in energy < 725, protein < 18, fat < 36, carbohydrate < 82
+        //         // $population = \App\Models\Food::where('energy', '<', 725)->where('protein', '<', 18)->where('fat', '<', 36)->where('carbohydrates', '<', 82)->get();
 
-                // 7-12 Months
-                // Get Foods Data from Database in energy < 725, protein < 18, fat < 36, carbohydrate < 82
-                // $population = \App\Models\Food::where('energy', '<', 725)->where('protein', '<', 18)->where('fat', '<', 36)->where('carbohydrates', '<', 82)->get();
+        //         // 1-3 Years
+        //         // Get Foods Data from Database in energy < 1125, protein < 26, fat < 44, carbohydrate < 155
+        //         // $population = \App\Models\Food::where('energy', '<', 1125)->where('protein', '<', 26)->where('fat', '<', 44)->where('carbohydrates', '<', 155)->get();
 
-                // 1-3 Years
-                // Get Foods Data from Database in energy < 1125, protein < 26, fat < 44, carbohydrate < 155
-                // $population = \App\Models\Food::where('energy', '<', 1125)->where('protein', '<', 26)->where('fat', '<', 44)->where('carbohydrates', '<', 155)->get();
+        //         // 4-6 Years
+        //         // Get Foods Data from Database in energy < 1600, protein < 35, fat < 62, carbohydrate < 220
+        //         // $population = \App\Models\Food::where('energy', '<', 1600)->where('protein', '<', 35)->where('fat', '<', 62)->where('carbohydrates', '<', 220)->get();
 
-                // 4-6 Years
-                // Get Foods Data from Database in energy < 1600, protein < 35, fat < 62, carbohydrate < 220
-                // $population = \App\Models\Food::where('energy', '<', 1600)->where('protein', '<', 35)->where('fat', '<', 62)->where('carbohydrates', '<', 220)->get();
+        //         // 7-9 Years
+        //         // Get Foods Data from Database in energy < 1850, protein < 49, fat < 72, carbohydrate < 254
+        //         $population = \App\Models\Food::where('energy', '<', 1850)->where('protein', '<', 49)->where('fat', '<', 72)->where('carbohydrates', '<', 254)->get();
 
-                // 7-9 Years
-                // Get Foods Data from Database in energy < 1850, protein < 49, fat < 72, carbohydrate < 254
-                $population = \App\Models\Food::where('energy', '<', 1850)->where('protein', '<', 49)->where('fat', '<', 72)->where('carbohydrates', '<', 254)->get();
+        //         break;
+        // }
 
-                break;
-        }
+        // // Harris-Benedict Equation
+        // $weight = $children->weight; // Weight in kg
+        // $height = $children->height; // Height in cm
+        // // Hitung umur dalam bulan (1 tahun = 12 bulan)
+        // $birthdate = $children->birthdate; // Age in months
+        // // Kurangi dari Hari ini
+        // $age = date_diff(date_create($birthdate), date_create('now'))->format('%y');
+        // $month = date_diff(date_create($birthdate), date_create('now'))->format('%m');
+        // $age = ($age * 12) + $month;
+        // $age = $age; // Age in months
+        // // dd($age);
+        // $gender = 'male';
+        // $activityLevel = 1.5; // 1.5 = Active | 1.2 = Moderate | 1.0 = Sedentary | 0.8 = Very Sedentary | 2.0 = Very Active | 2.2 = Extremely Active | 2.4 = Professional Athlete | 2.6 = Olympic Athlete | 2.8 = Super Human | 3.0 = God
 
-        // Harris-Benedict Equation
-        $weight = $children->weight; // Weight in kg
-        $height = $children->height; // Height in cm
-        // Hitung umur dalam bulan (1 tahun = 12 bulan)
-        $birthdate = $children->birthdate; // Age in months
-        // Kurangi dari Hari ini
-        $age = date_diff(date_create($birthdate), date_create('now'))->format('%y');
-        $month = date_diff(date_create($birthdate), date_create('now'))->format('%m');
-        $age = ($age * 12) + $month;
-        $age = $age; // Age in months
-        // dd($age);
-        $gender = 'male';
-        $activityLevel = 1.5; // 1.5 = Active | 1.2 = Moderate | 1.0 = Sedentary | 0.8 = Very Sedentary | 2.0 = Very Active | 2.2 = Extremely Active | 2.4 = Professional Athlete | 2.6 = Olympic Athlete | 2.8 = Super Human | 3.0 = God
+        // // Harris-Benedict
+        // $now = new \App\Models\Algoritm\HarrisBenedict($gender, $weight, $height, $age, $activityLevel);
 
-        // Harris-Benedict
-        $now = new \App\Models\Algoritm\HarrisBenedict($gender, $weight, $height, $age, $activityLevel);
+        // // 5. Target
+        // // Set Target
+        // // Harris-Benedict Equation
+        // $targetweight = $children->weight + 10; // Weight in kg
+        // $targetheight = $children->height + 20; // Height in cm
+        // // $targetage = 12; // Age in months
+        // // $targetgender = 'male';
+        // // $targetactivityLevel = 1.0; // 1.5 = Active | 1.2 = Moderate | 1.0 = Sedentary | 0.8 = Very Sedentary | 2.0 = Very Active | 2.2 = Extremely Active | 2.4 = Professional Athlete | 2.6 = Olympic Athlete | 2.8 = Super Human | 3.0 = God
 
-        // 5. Target
-        // Set Target
-        // Harris-Benedict Equation
-        $targetweight = $children->weight + 10; // Weight in kg
-        $targetheight = $children->height + 20; // Height in cm
-        // $targetage = 12; // Age in months
-        // $targetgender = 'male';
-        // $targetactivityLevel = 1.0; // 1.5 = Active | 1.2 = Moderate | 1.0 = Sedentary | 0.8 = Very Sedentary | 2.0 = Very Active | 2.2 = Extremely Active | 2.4 = Professional Athlete | 2.6 = Olympic Athlete | 2.8 = Super Human | 3.0 = God
+        // // Harris-Benedict
+        // $target = new \App\Models\Algoritm\HarrisBenedict($gender, $targetweight, $targetheight, $age, $activityLevel);
 
-        // Harris-Benedict
-        $target = new \App\Models\Algoritm\HarrisBenedict($gender, $targetweight, $targetheight, $age, $activityLevel);
+        // // Debugging Harris-Benedict
+        // // dd($data, $target);
 
-        // Debugging Harris-Benedict
-        // dd($data, $target);
+        // // Generate Population
+        // // Hitung nilai maksimum dan minimum dari setiap nutrisi
+        // $maxEnergy = $population->max('energy');
+        // $minEnergy = $population->min('energy');
+        // $maxProtein = $population->max('protein');
+        // $minProtein = $population->min('protein');
+        // $maxFat = $population->max('fat');
+        // $minFat = $population->min('fat');
+        // $maxCarbohydrates = $population->max('carbohydrates');
+        // $minCarbohydrates = $population->min('carbohydrates');
 
-        // Generate Population
-        // Hitung nilai maksimum dan minimum dari setiap nutrisi
-        $maxEnergy = $population->max('energy');
-        $minEnergy = $population->min('energy');
-        $maxProtein = $population->max('protein');
-        $minProtein = $population->min('protein');
-        $maxFat = $population->max('fat');
-        $minFat = $population->min('fat');
-        $maxCarbohydrates = $population->max('carbohydrates');
-        $minCarbohydrates = $population->min('carbohydrates');
+        // // Range
+        // $rangeEnergy = $maxEnergy - $minEnergy;
+        // $rangeProtein = $maxProtein - $minProtein;
+        // $rangeFat = $maxFat - $minFat;
+        // $rangeCarbohydrates = $maxCarbohydrates - $minCarbohydrates;
 
-        // Range
-        $rangeEnergy = $maxEnergy - $minEnergy;
-        $rangeProtein = $maxProtein - $minProtein;
-        $rangeFat = $maxFat - $minFat;
-        $rangeCarbohydrates = $maxCarbohydrates - $minCarbohydrates;
+        // // Satuan Range (1) = 1%
+        // $satuanEnergy = $rangeEnergy / 10;
+        // $satuanProtein = $rangeProtein / 10;
+        // $satuanFat = $rangeFat / 10;
+        // $satuanCarbohydrates = $rangeCarbohydrates / 10;
 
-        // Satuan Range (1) = 1%
-        $satuanEnergy = $rangeEnergy / 10;
-        $satuanProtein = $rangeProtein / 10;
-        $satuanFat = $rangeFat / 10;
-        $satuanCarbohydrates = $rangeCarbohydrates / 10;
+        // // Set Data
+        // $data = [
+        //     'population' => $population,
+        //     'target' => $target,
+        //     'now' => $now,
+        //     'maxEnergy' => $maxEnergy,
+        //     'minEnergy' => $minEnergy,
+        //     'maxProtein' => $maxProtein,
+        //     'minProtein' => $minProtein,
+        //     'maxFat' => $maxFat,
+        //     'minFat' => $minFat,
+        //     'maxCarbohydrates' => $maxCarbohydrates,
+        //     'minCarbohydrates' => $minCarbohydrates,
+        //     'rangeEnergy' => $rangeEnergy,
+        //     'rangeProtein' => $rangeProtein,
+        //     'rangeFat' => $rangeFat,
+        //     'rangeCarbohydrates' => $rangeCarbohydrates,
+        //     'satuanEnergy' => $satuanEnergy,
+        //     'satuanProtein' => $satuanProtein,
+        //     'satuanFat' => $satuanFat,
+        //     'satuanCarbohydrates' => $satuanCarbohydrates,
+        // ];
 
-        // Set Data
-        $data = [
-            'population' => $population,
-            'target' => $target,
-            'now' => $now,
-            'maxEnergy' => $maxEnergy,
-            'minEnergy' => $minEnergy,
-            'maxProtein' => $maxProtein,
-            'minProtein' => $minProtein,
-            'maxFat' => $maxFat,
-            'minFat' => $minFat,
-            'maxCarbohydrates' => $maxCarbohydrates,
-            'minCarbohydrates' => $minCarbohydrates,
-            'rangeEnergy' => $rangeEnergy,
-            'rangeProtein' => $rangeProtein,
-            'rangeFat' => $rangeFat,
-            'rangeCarbohydrates' => $rangeCarbohydrates,
-            'satuanEnergy' => $satuanEnergy,
-            'satuanProtein' => $satuanProtein,
-            'satuanFat' => $satuanFat,
-            'satuanCarbohydrates' => $satuanCarbohydrates,
-        ];
+        // // Set Target
+        // $resultEnergy = (($target->result['energy'] - $data['minEnergy']) / $data['satuanEnergy']);
+        // $resultEnergy = round($resultEnergy) > 10 ? 10 : round($resultEnergy);
+        // $resultProtein = (($target->result['protein'] - $data['minProtein']) / $data['satuanProtein']);
+        // $resultProtein = round($resultProtein) > 10 ? 10 : round($resultProtein);
+        // $resultFat = (($target->result['fat'] - $data['minFat']) / $data['satuanFat']);
+        // $resultFat = round($resultFat) > 10 ? 10 : round($resultFat);
+        // $resultCarbohydrates = (($target->result['carbs'] - $data['minCarbohydrates']) / $data['satuanCarbohydrates']);
+        // $resultCarbohydrates = round($resultCarbohydrates) > 10 ? 10 : round($resultCarbohydrates);
 
-        // Set Target
-        $resultEnergy = (($target->result['energy'] - $data['minEnergy']) / $data['satuanEnergy']);
-        $resultEnergy = round($resultEnergy) > 10 ? 10 : round($resultEnergy);
-        $resultProtein = (($target->result['protein'] - $data['minProtein']) / $data['satuanProtein']);
-        $resultProtein = round($resultProtein) > 10 ? 10 : round($resultProtein);
-        $resultFat = (($target->result['fat'] - $data['minFat']) / $data['satuanFat']);
-        $resultFat = round($resultFat) > 10 ? 10 : round($resultFat);
-        $resultCarbohydrates = (($target->result['carbs'] - $data['minCarbohydrates']) / $data['satuanCarbohydrates']);
-        $resultCarbohydrates = round($resultCarbohydrates) > 10 ? 10 : round($resultCarbohydrates);
+        // // dd($resultEnergy, $target->result['energy'], $data['minEnergy'], $data['satuanEnergy']);
+        // // GeneticAlgorithm
+        // // Contoh penggunaan
+        // $populationSize = 100;
+        // $generations = 100;
+        // $mutationRate = 100; // Persentase peluang mutasi
+        // $target = $resultEnergy + $resultProtein + $resultFat + $resultCarbohydrates; // Target
 
-        // dd($resultEnergy, $target->result['energy'], $data['minEnergy'], $data['satuanEnergy']);
-        // GeneticAlgorithm
-        // Contoh penggunaan
-        $populationSize = 100;
-        $generations = 100;
-        $mutationRate = 100; // Persentase peluang mutasi
-        $target = $resultEnergy + $resultProtein + $resultFat + $resultCarbohydrates; // Target
+        // // Loop 5 Kali untuk Rekomendasi Makanan pada 1 Hari
+        // $recommendations = [];
+        // for ($f = 0; $f < 3; $f++) {
+        //     for ($i = 0; $i < 100; $i++) {
+        //         $bestResult = [];
+        //         $geneticAlgorithm = new GeneticAlgoritm($populationSize, $generations, $mutationRate, $target);
+        //         $bestResult = $geneticAlgorithm->runGeneticAlgorithm();
+        //         // dd($bestResult);
 
-        // Loop 5 Kali untuk Rekomendasi Makanan pada 1 Hari
-        $recommendations = [];
-        for ($f = 0; $f < 3; $f++) {
-            for ($i = 0; $i < 100; $i++) {
-                $bestResult = [];
-                $geneticAlgorithm = new GeneticAlgoritm($populationSize, $generations, $mutationRate, $target);
-                $bestResult = $geneticAlgorithm->runGeneticAlgorithm();
-                // dd($bestResult);
+        //         // Count Real Result
+        //         $realResultEnergy = $data['minEnergy'] + ($bestResult[0] * $data['satuanEnergy']);
+        //         $realResultProtein = $data['minProtein'] + ($bestResult[1] * $data['satuanProtein']);
+        //         $realResultFat = $data['minFat'] + ($bestResult[2] * $data['satuanFat']);
+        //         $realResultCarbohydrates = $data['minCarbohydrates'] + ($bestResult[3] * $data['satuanCarbohydrates']);
 
-                // Count Real Result
-                $realResultEnergy = $data['minEnergy'] + ($bestResult[0] * $data['satuanEnergy']);
-                $realResultProtein = $data['minProtein'] + ($bestResult[1] * $data['satuanProtein']);
-                $realResultFat = $data['minFat'] + ($bestResult[2] * $data['satuanFat']);
-                $realResultCarbohydrates = $data['minCarbohydrates'] + ($bestResult[3] * $data['satuanCarbohydrates']);
+        //         // Debugging
+        //         // dd($realResultEnergy, $realResultProtein, $realResultFat, $realResultCarbohydrates);
 
-                // Debugging
-                // dd($realResultEnergy, $realResultProtein, $realResultFat, $realResultCarbohydrates);
+        //         $recommendationFoods = [];
+        //         for ($i = 0; $i < 250; $i++) {
+        //             foreach ($foods as $index => $food) {
+        //                 // dd($food);
+        //                 // Cek apakah makanan memiliki nilai protein, lemak, dan karbohidrat yang sesuai dengan hasil algoritma genetika
+        //                 if (
+        //                     $food->energy == $realResultEnergy || $food->energy == $realResultEnergy + $i || $food->energy == $realResultEnergy - $i
+        //                     && $food->protein == $realResultProtein || $food->protein == $realResultProtein + $i || $food->protein == $realResultProtein - $i
+        //                     && $food->fat == $realResultFat || $food->fat == $realResultFat + $i || $food->fat == $realResultFat - $i
+        //                     && $food->carbohydrates == $realResultCarbohydrates || $food->carbohydrates == $realResultCarbohydrates + $i || $food->carbohydrates == $realResultCarbohydrates - $i
+        //                 ) {
 
-                $recommendationFoods = [];
-                for ($i = 0; $i < 250; $i++) {
-                    foreach ($foods as $index => $food) {
-                        // dd($food);
-                        // Cek apakah makanan memiliki nilai protein, lemak, dan karbohidrat yang sesuai dengan hasil algoritma genetika
-                        if (
-                            $food->energy == $realResultEnergy || $food->energy == $realResultEnergy + $i || $food->energy == $realResultEnergy - $i
-                            && $food->protein == $realResultProtein || $food->protein == $realResultProtein + $i || $food->protein == $realResultProtein - $i
-                            && $food->fat == $realResultFat || $food->fat == $realResultFat + $i || $food->fat == $realResultFat - $i
-                            && $food->carbohydrates == $realResultCarbohydrates || $food->carbohydrates == $realResultCarbohydrates + $i || $food->carbohydrates == $realResultCarbohydrates - $i
-                        ) {
+        //                     // Check if the food is already in the recommendations
+        //                     if (!in_array($food, $recommendationFoods)) {
+        //                         $recommendationFoods[] = $food;
+        //                     }
 
-                            // Check if the food is already in the recommendations
-                            if (!in_array($food, $recommendationFoods)) {
-                                $recommendationFoods[] = $food;
-                            }
+        //                     // If the recommendations array already has 5 foods, stop the loop
+        //                     if (count($recommendationFoods) == 3) {
+        //                         break 3;
+        //                     }
 
-                            // If the recommendations array already has 5 foods, stop the loop
-                            if (count($recommendationFoods) == 3) {
-                                break 3;
-                            }
+        //                     continue;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     $recommendations[] = $recommendationFoods;
+        // }
 
-                            continue;
-                        }
-                    }
-                }
-            }
-            $recommendations[] = $recommendationFoods;
-        }
+        // // dd($recommendations);
 
-        // dd($recommendations);
+        // // Filter Data with Best Result
+        // // $foods = $population->whereIn('id', $bestResult);
 
-        // Filter Data with Best Result
-        // $foods = $population->whereIn('id', $bestResult);
+        // // $geneticAlgorithm = new GeneticAlgoritm($data, $target, $population, $generationLimit);
 
-        // $geneticAlgorithm = new GeneticAlgoritm($data, $target, $population, $generationLimit);
-
-        // Return a View
-        return view('pages.user.food-recommendation.index', compact('childdren', 'foods', 'data', 'recommendations'));
+        // // Return a View
+        // return view('pages.user.food-recommendation.index', compact('childdren', 'foods', 'data', 'recommendations'));
     }
 
     /**
@@ -388,7 +395,9 @@ class FoodRecommendationController extends Controller
 
                 // 7-9 Years
                 // Get Foods Data from Database in energy < 1850, protein < 49, fat < 72, carbohydrate < 254
-                $population = \App\Models\Food::where('energy', '<', 1850)->where('protein', '<', 49)->where('fat', '<', 72)->where('carbohydrates', '<', 254)->get();
+                // $population = \App\Models\Food::where('energy', '<', 1850)->where('protein', '<', 49)->where('fat', '<', 72)->where('carbohydrates', '<', 254)->get();
+
+                $population = \App\Models\Food::all();
 
                 break;
         }
